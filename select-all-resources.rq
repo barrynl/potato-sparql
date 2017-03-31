@@ -1,0 +1,8 @@
+#+ endpoint: http://fuseki:3030/pizza/query
+#+ method: GET
+#+ summary: Selects all resources.
+
+SELECT ?s ?p ?o 
+WHERE {
+	?s ?p ?o .
+}
