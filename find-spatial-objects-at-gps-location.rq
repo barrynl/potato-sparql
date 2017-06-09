@@ -1,6 +1,6 @@
 #+ endpoint: http://fuseki:3030/geo/query
 #+ method: GET
-#+ summary: Retrieves the Crop that is grown on the parcel that contains the given GPS coordinate.
+#+ summary: Retrieves the Crop that is grown on the parcel that contains the given GPS coordinate. For example, use lat=51.40632 and long=4.18239.
 
 PREFIX spatial: <http://jena.apache.org/spatial#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
