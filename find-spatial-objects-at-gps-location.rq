@@ -1,4 +1,4 @@
-#+ endpoint: http://fuseki:3030/pizza/query
+#+ endpoint: http://fuseki:3030/geo/query
 #+ method: GET
 #+ summary: Retrieves the Crop that is grown on the parcel that contains the given GPS coordinate.
 
