@@ -1,0 +1,10 @@
+#+ endpoint: http://fuseki:3030/pizza/query
+#+ method: GET
+#+ summary: Retrieves the Crop that is grown on the parcel that contains the given GPS coordinate.
+
+PREFIX spatial: <http://jena.apache.org/spatial#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wkt: <http://www.opengis.net/ont/geosparql#>
+PREFIX potato: <http://ontology.tno.nl/foodcube/potato/>
+
+SELECT ?parcelCrop { ?place spatial:intersectBox(?_lat ?_long ?_lat ?_long) . ?place potato:grows ?crop . ?crop potato:name ?parcelCrop .}
