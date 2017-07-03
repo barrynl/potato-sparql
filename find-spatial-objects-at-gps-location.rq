@@ -1,10 +1,16 @@
-#+ endpoint: http://fuseki:3030/potato/query
 #+ method: GET
-#+ summary: Retrieves the Crop that is grown on the parcel that contains the given GPS coordinate. For example, use lat=52.75707 and long=5.90386.
+#+ summary: Retrieves all spatial objects that contain the GPS coordinate and find their URI and a human-readable label. In case the spatial object is a parcel, it returns the crop that is being grown on that parcel. If the spatial objects is soil, then it returns the name of the type of soil. For example, use lat=52.75707 and long=5.90386.
 
 PREFIX spatial: <http://jena.apache.org/spatial#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wkt: <http://www.opengis.net/ont/geosparql#>
 PREFIX potato: <http://ontology.tno.nl/foodcube/potato/>
 
-SELECT ?place ?parcelCrop { ?place spatial:intersectBox(?_lat ?_long ?_lat ?_long) . OPTIONAL { ?place potato:grows ?crop . ?crop potato:name ?parcelCrop . } }
+SELECT ?text 
+{ 
+	?place spatial:intersectBox(52.75707 5.90386 52.75707 5.90386) . 
+	OPTIONAL { ?place a potato:CropParcel . ?place potato:grows ?crop . ?crop potato:name ?text . }
+	OPTIONAL { ?place a ?soil . 
+	BIND (strafter(str(?soil), str(potato:)) AS ?text)
+	}
+}
