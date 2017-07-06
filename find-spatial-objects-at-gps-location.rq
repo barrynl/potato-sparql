@@ -10,7 +10,7 @@ PREFIX time: <http://www.w3.org/2006/time#>
 
 SELECT ?text 
 { 
-	?place spatial:intersectBox(52.75707 5.90386 52.75707 5.90386) . 
+	?place spatial:intersectBox(?_lat ?_long ?_lat ?_long) . 
 	OPTIONAL { ?place a potato:CropParcel . ?place potato:grows ?crop . ?crop potato:name ?name . 
     ?place potato:forPeriod ?period . ?period time:hasBeginning ?begin . ?begin time:inXSDDate ?date . 
     BIND (concat(str(year(?date)), " ", ?name) AS ?text)
