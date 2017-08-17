@@ -19,3 +19,4 @@ SELECT ?text
 	BIND (strafter(str(?soilType), str(potato:)) AS ?text)
 	}
 }
+ORDER BY ASC(?date)
