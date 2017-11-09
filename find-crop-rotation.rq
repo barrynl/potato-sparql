@@ -1,0 +1,18 @@
+#+ endpoint: http://fuseki:3030/potato/query
+#+ method: GET
+#+ summary: Retrieves all crop parcels that exist in 2017.
+
+PREFIX spatial: <http://jena.apache.org/spatial#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wkt: <http://www.opengis.net/ont/geosparql#>
+PREFIX potato: <http://ontology.tno.nl/foodcube/potato/>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?parcel ?coords
+WHERE
+{
+	?parcel a potato:CropParcel . 
+	?place potato:forPeriod ?period . 
+	?period time:hasBeginning ?begin . ?begin time:inXSDDate "2017-01-01"^^xsd:date . 
+}

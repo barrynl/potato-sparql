@@ -1,0 +1,27 @@
+#+ endpoint: http://fuseki:3030/potato/query
+#+ method: GET
+#+ summary: Given a particular GPS coordinate, this operation returns the rotation history and soil characteristics at that location. Some locations do not provide a result, this might be caused by: the soil at that location falls within the 'Other' BOFEK2012 category (i.e. with code 999), there is no farmland at the specified location. Example GPS coordinate Lat: 52.42134450661928 | Lon: 5.461099727271467 
+
+PREFIX spatial: <http://jena.apache.org/spatial#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wkt: <http://www.opengis.net/ont/geosparql#>
+PREFIX potato: <http://ontology.tno.nl/foodcube/potato/>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?place ?soilType ?densityValue ?materialValue ?organicValue ?lutumValue ?siltValue
+{
+    ?place spatial:intersectBox(?_lat ?_long ?_lat ?_lat) .
+    ?place a potato:Soil .
+    ?place a ?soilType .
+  	?soilType rdfs:subClassOf ?soilSuperType .
+    ?soilSuperType rdfs:subClassOf potato:Soil .
+    ?soilType owl:equivalentClass ?restrict .
+    ?restrict owl:intersectionOf (?densityElem ?materialElem ?organicElem ?lutumElem ?siltElem) .
+    ?densityElem owl:hasValue ?densityValue .
+    ?materialElem owl:hasValue ?materialValue .
+    ?organicElem owl:hasValue ?organicValue .
+    ?lutumElem owl:hasValue ?lutumValue .
+    ?siltElem owl:hasValue ?siltValue .
+}
