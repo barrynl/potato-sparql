@@ -1,0 +1,18 @@
+#+ endpoint: http://fuseki:3030/potato/query
+#+ method: GET
+#+ summary: Given a particular GPS coordinate, this operation returns the rotation history at that location. Some locations do not provide a result, this might be caused by: the parcel at that location is not of a farmland (dutch: Bouwland) category. Example GPS coordinate Lat: 52.42134450661928 | Lon: 5.461099727271467 
+
+PREFIX spatial: <http://jena.apache.org/spatial#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wkt: <http://www.opengis.net/ont/geosparql#>
+PREFIX potato: <http://ontology.tno.nl/foodcube/potato/>
+PREFIX time: <http://www.w3.org/2006/time#>
+
+SELECT ?year ?name
+{ 
+	?place spatial:intersectBox(?_lat ?_long ?_lat ?_long) . 
+	?place a potato:CropParcel . ?place potato:grows ?crop . ?crop potato:name ?name . 
+    ?place potato:forPeriod ?period . ?period time:hasBeginning ?begin . ?begin time:inXSDDate ?date . 
+    BIND (year(?date) AS ?year)
+}
+ORDER BY ASC(?date)

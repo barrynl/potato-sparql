@@ -10,7 +10,7 @@ PREFIX time: <http://www.w3.org/2006/time#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?place ?soilType ?densityValue ?materialValue ?organicValue ?lutumValue ?siltValue
+SELECT ?soilType ?densityValue ?materialValue ?organicValue ?lutumValue ?siltValue
 {
     ?place spatial:intersectBox(?_lat ?_long ?_lat ?_lat) .
     ?place a potato:Soil .
