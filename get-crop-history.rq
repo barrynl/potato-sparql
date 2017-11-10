@@ -1,6 +1,6 @@
 #+ endpoint: http://fuseki:3030/potato/query
 #+ method: GET
-#+ summary: Given a particular GPS coordinate, this operation returns the rotation history at that location. Some locations do not provide a result, this might be caused by: the parcel at that location is not of a farmland (dutch: Bouwland) category. Example GPS coordinate Lat: 52.42134450661928 | Lon: 5.461099727271467 
+#+ summary: "Given a particular GPS coordinate, this operation returns the rotation history at that location. Some locations do not provide a result, this might be caused by: the parcel at that location is not of a farmland (dutch: Bouwland) category. Example GPS coordinate Lat: 52.42134450661928 | Lon: 5.461099727271467" 
 
 PREFIX spatial: <http://jena.apache.org/spatial#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
