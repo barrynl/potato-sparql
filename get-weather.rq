@@ -1,0 +1,22 @@
+#+ endpoint: http://fuseki:3030/weather/query
+#+ method: GET
+#+ summary: "Given a particular KNMI weather station number (see http://projects.knmi.nl/klimatologie/metadata/index.html) and a date, this API returns the avg/min/max temperature, amount of sun/rain, evaporation and air humidity on that date at the given weather station's location." 
+
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX ti: <http://www.ontologydesignpatterns.org/cp/owl/timeinterval.owl#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX potato: <http://ontology.tno.nl/foodcube/potato#>
+ 
+SELECT ?uri ?latitude ?longitude ?temp
+WHERE {
+  ?date time:inXSDDate ?_date_xsd_date .
+  ?uri time:hasTime ?date .
+  ?ws potato:hasNumber ?weatherStationNumber_integer .
+  ?uri potato:hasWeatherStation ?ws .
+  ?uri rdf:type potato:Measurement .
+  ?uri potato:hasAvgTemp ?temp .
+  ?ws geo:lat ?latitude .
+  ?ws geo:long ?longitude .
+}
