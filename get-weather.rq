@@ -1,4 +1,4 @@
-#+ endpoint: http://fuseki:3030/weather/query
+#+ endpoint: http://fuseki:3030/weather/sparql
 #+ method: GET
 #+ summary: "Given a particular KNMI weather station number (see http://projects.knmi.nl/klimatologie/metadata/index.html) and a date, this API returns the avg/min/max temperature, amount of sun/rain, evaporation and air humidity on that date at the given weather station's location." 
 
