@@ -16,5 +16,5 @@ WHERE {
   ?station rdfs:label ?wsLabel .
   ?station geo:lat ?lat .
   ?station geo:long ?long .
-  ?station potato:isActive "true"^^^xsd:boolean .
+  ?station potato:isActive "true"^^xsd:boolean .
 }
