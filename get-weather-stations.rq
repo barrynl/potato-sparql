@@ -1,0 +1,19 @@
+#+ endpoint: http://fuseki:3030/weather/sparql
+#+ method: GET
+#+ summary: "Returns all known KNMI weather station number (see http://projects.knmi.nl/klimatologie/metadata/index.html) for which weather data over the last few years can be requested." 
+
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX potato: <http://ontology.tno.nl/foodcube/potato#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+ 
+SELECT ?station ?wsNumber ?wsLabel ?lat ?long
+WHERE {
+  ?station a potato:WeatherStation .
+  ?station potato:hasNumber ?wsNumber .
+  ?station rdfs:label ?wsLabel .
+  ?station geo:lat ?lat .
+  ?station geo:long ?long .
+}

@@ -5,7 +5,6 @@
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX ti: <http://www.ontologydesignpatterns.org/cp/owl/timeinterval.owl#>
 PREFIX time: <http://www.w3.org/2006/time#>
 PREFIX potato: <http://ontology.tno.nl/foodcube/potato#>
  
